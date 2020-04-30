@@ -1,15 +1,50 @@
 # Checkly Handlebars
 
-This is the Handlebars library packed with a few helpers to extend the built-in ones. It's used internally at Checkly to parse templates. 
+This library is a very simple wrapper around the templating library Handlebars that bundles additional helpers. It can be used as a drop-in replacement.  At Checkly, we use Handlebars to provide a powerful flexibility in some of our features like creating custom bodies for alerting webhooks.
 
+## What is Checkly?
+Checkly is an active reliability platform that brings together the best of end-to-end testing and active monitoring to serve modern, cross-functional DevOps teams. With a focus on JavaScript-based Open Source tech stacks, Checkly is easy to get started with and seamlessly integrates into your development workflow.
 
-## Helpers
+## Usage
 
-### `$RANDOM_NUMBER`
+Install via NPM:
 
-### `$UUID`
+```shell script
+$ npm install @checkly/handlebars --save # or yarn add @checkly/handlebars
+```
 
-### {{and}}
+You can use it as a drop-in replacement for Handlebars:
+```javascript
+// replaced the following
+const Handlebars = require('handlebars')
+
+// with
+const Handlebars = require('@checkly/handlebars')
+```
+### Helpers
+[Built-in helpers](https://handlebarsjs.com/guide/builtin-helpers.html) provided by the vanilla Handlebars package can still be used. If you are using this library for your own project, you can couple it with other libraries that adds functionality such as [`handlebars-extra`](https://github.com/helpers/handlebars-helpers).
+
+#### {{$RANDOM_NUMBER}}
+
+Produces a random number between 0 and 1000.
+
+**Example**
+
+```handlebars
+Your lucky number is {{$RANDOM_NUMBER}}
+<!-- results in: '345' -->
+```
+
+#### {{$UUID}}
+
+Provides a UUID string from cryptographically-strong random values, compliant with RFC4122's Version 4.
+
+```handlebars
+SessionId: {{$RANDOM_NUMBER}}
+<!-- results in: '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d' -->
+```
+
+#### {{and}}
 
 Helper that renders the block if **both** of the given values are truthy. If an inverse block is specified it will be rendered when falsy. Works as a block helper, inline helper or subexpression.
 
@@ -28,7 +63,7 @@ Helper that renders the block if **both** of the given values are truthy. If an 
 <!-- results in: 'A' -->
 ```
 
-### {{compare}}
+#### {{compare}}
 
 Render a block when a comparison of the first and third
 arguments returns true. The second argument is
@@ -43,7 +78,7 @@ optionally specify an inverse block to render when falsy.
 * `options` **{Object}**: Handlebars provided options object
 * `returns` **{String}**: Block, or if specified the inverse block is rendered if falsey.
 
-### {{contains}}
+#### {{contains}}
 
 Block helper that renders the block if `collection` has the given `value`, using strict equality (`===`) for comparison, otherwise the inverse block is rendered (if specified). If a `startIndex` is specified and is negative, it is used as the offset from the end of the collection.
 
@@ -65,7 +100,7 @@ Block helper that renders the block if `collection` has the given `value`, using
 {{/contains}}
 ```
 
-### {{default}}
+#### {{default}}
 
 Returns the first value that is not undefined, otherwise the "default" value is returned.
 
@@ -75,7 +110,7 @@ Returns the first value that is not undefined, otherwise the "default" value is 
 * `defaultValue` **{any}**
 * `returns` **{String}**
 
-### {{eq}}
+#### {{eq}}
 
 Block helper that renders a block if `a` is **equal to** `b`.
 If an inverse block is specified it will be rendered when falsy.
@@ -89,7 +124,7 @@ second value.
 * `options` **{Object}**: Handlebars provided options object
 * `returns` **{String}**: Block, or inverse block if specified and falsey.
 
-### {{gt}}
+#### {{gt}}
 
 Block helper that renders a block if `a` is **greater than** `b`.
 
@@ -104,7 +139,7 @@ second value.
 * `options` **{Object}**: Handlebars provided options object
 * `returns` **{String}**: Block, or inverse block if specified and falsey.
 
-### {{gte}}
+#### {{gte}}
 
 Block helper that renders a block if `a` is **greater than or equal to** `b`.
 
@@ -119,7 +154,7 @@ second value.
 * `options` **{Object}**: Handlebars provided options object
 * `returns` **{String}**: Block, or inverse block if specified and falsey.
 
-### {{has}}
+#### {{has}}
 
 Block helper that renders a block if `value` has `pattern`.
 If an inverse block is specified it will be rendered when falsy.
@@ -131,7 +166,7 @@ If an inverse block is specified it will be rendered when falsy.
 * `options` **{Object}**: Handlebars provided options object
 * `returns` **{String}**
 
-### {{isFalsey}}
+#### {{isFalsey}}
 
 Returns true if the given `value` is falsey. Uses the [falsey](https://github.com/jonschlinkert/falsey)
 library for comparisons. Please see that library for more information
@@ -143,7 +178,7 @@ or to report bugs with this helper.
 * `options` **{Options}**
 * `returns` **{Boolean}**
 
-### {{isTruthy}}
+#### {{isTruthy}}
 
 Returns true if the given `value` is truthy. Uses the [falsey](https://github.com/jonschlinkert/falsey)
 library for comparisons. Please see that library for more information
@@ -155,7 +190,7 @@ or to report bugs with this helper.
 * `options` **{Options}**
 * `returns` **{Boolean}**
 
-### {{ifEven}}
+#### {{ifEven}}
 
 Return true if the given value is an even number.
 
@@ -175,7 +210,7 @@ Return true if the given value is an even number.
 {{/ifEven}}
 ```
 
-### {{ifNth}}
+#### {{ifNth}}
 
 Conditionally renders a block if the remainder is zero when
 `a` operand is divided by `b`. If an inverse block is specified
@@ -188,7 +223,7 @@ it will be rendered when the remainder is **not zero**.
 * `options` **{Object}**: Handlebars provided options object
 * `returns` **{String}**: Block, or inverse block if specified and falsey.
 
-### {{ifOdd}}
+#### {{ifOdd}}
 
 Block helper that renders a block if `value` is **an odd number**. If an inverse block is specified it will be rendered when falsy.
 
@@ -208,7 +243,7 @@ Block helper that renders a block if `value` is **an odd number**. If an inverse
 {{/ifOdd}}
 ```
 
-### {{is}}
+#### {{is}}
 
 Block helper that renders a block if `a` is **equal to** `b`.
 If an inverse block is specified it will be rendered when falsy.
@@ -221,7 +256,7 @@ Similar to [eq](#eq) but does not do strict equality.
 * `options` **{Object}**: Handlebars provided options object
 * `returns` **{String}**
 
-### {{isnt}}
+#### {{isnt}}
 
 Block helper that renders a block if `a` is **not equal to** `b`.
 If an inverse block is specified it will be rendered when falsy.
@@ -235,7 +270,7 @@ comparisons.
 * `options` **{Object}**: Handlebars provided options object
 * `returns` **{String}**
 
-### {{lt}}
+#### {{lt}}
 
 Block helper that renders a block if `a` is **less than** `b`.
 
@@ -249,7 +284,7 @@ second value.
 * `options` **{Object}**: Handlebars provided options object
 * `returns` **{String}**: Block, or inverse block if specified and falsey.
 
-### {{lte}}
+#### {{lte}}
 
 Block helper that renders a block if `a` is **less than or equal to** `b`.
 
@@ -264,7 +299,7 @@ second value.
 * `options` **{Object}**: Handlebars provided options object
 * `returns` **{String}**: Block, or inverse block if specified and falsey.
 
-### {{neither}}
+#### {{neither}}
 
 Block helper that renders a block if **neither of** the given values
 are truthy. If an inverse block is specified it will be rendered
@@ -277,7 +312,7 @@ when falsy.
 * `options` **{}**: Handlebars options object
 * `returns` **{String}**: Block, or inverse block if specified and falsey.
 
-### {{not}}
+#### {{not}}
 
 Returns true if `val` is falsey. Works as a block or inline helper.
 
@@ -287,7 +322,7 @@ Returns true if `val` is falsey. Works as a block or inline helper.
 * `options` **{Object}**: Handlebars provided options object
 * `returns` **{String}**
 
-### {{or}}
+#### {{or}}
 
 Block helper that renders a block if **any of** the given values is truthy. If an inverse block is specified it will be rendered when falsy.
 
@@ -305,7 +340,7 @@ Block helper that renders a block if **any of** the given values is truthy. If a
 {{/or}}
 ```
 
-### {{unlessEq}}
+#### {{unlessEq}}
 
 Block helper that always renders the inverse block **unless `a` is
 is equal to `b`**.
@@ -317,7 +352,7 @@ is equal to `b`**.
 * `options` **{Object}**: Handlebars provided options object
 * `returns` **{String}**: Inverse block by default, or block if falsey.
 
-### {{unlessGt}}
+#### {{unlessGt}}
 
 Block helper that always renders the inverse block **unless `a` is
 is greater than `b`**.
@@ -329,7 +364,7 @@ is greater than `b`**.
 * `options` **{Object}**: Handlebars provided options object
 * `returns` **{String}**: Inverse block by default, or block if falsey.
 
-### {{unlessLt}}
+#### {{unlessLt}}
 
 Block helper that always renders the inverse block **unless `a` is
 is less than `b`**.
@@ -341,7 +376,7 @@ is less than `b`**.
 * `options` **{Object}**: Handlebars provided options object
 * `returns` **{String}**: Block, or inverse block if specified and falsey.
 
-### {{unlessGteq}}
+#### {{unlessGteq}}
 
 Block helper that always renders the inverse block **unless `a` is
 is greater than or equal to `b`**.
@@ -353,7 +388,7 @@ is greater than or equal to `b`**.
 * `options` **{Object}**: Handlebars provided options object
 * `returns` **{String}**: Block, or inverse block if specified and falsey.
 
-### {{unlessLteq}}
+#### {{unlessLteq}}
 
 Block helper that always renders the inverse block **unless `a` is
 is less than or equal to `b`**.
