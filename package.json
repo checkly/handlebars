@@ -8,6 +8,9 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Checkly Inc. <info@checklyhq.com>",
   "repository": {
     "type": "git",
