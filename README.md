@@ -40,7 +40,7 @@ Your lucky number is {{$RANDOM_NUMBER}}
 Provides a UUID string from cryptographically-strong random values, compliant with RFC4122's Version 4.
 
 ```handlebars
-SessionId: {{$RANDOM_NUMBER}}
+SessionId: {{$UUID}}
 <!-- results in: '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d' -->
 ```
 
