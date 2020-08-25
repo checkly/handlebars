@@ -1,8 +1,12 @@
 {
   "name": "@checkly/handlebars",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A Handlebars wrapper that adds a few helpers",
-  "keywords": [],
+  "keywords": [
+    "checkly",
+    "handlebars",
+    "helpers"
+  ],
   "main": "dist/checkly-handlebars.js",
   "module": "dist/checkly-handlebars.js",
   "files": [
