@@ -21,6 +21,7 @@ const Handlebars = require('handlebars')
 // with
 const Handlebars = require('@checkly/handlebars')
 ```
+
 ### Helpers
 [Built-in helpers](https://handlebarsjs.com/guide/builtin-helpers.html) provided by the vanilla Handlebars package can still be used. If you are using this library for your own project, you can couple it with other libraries that adds functionality such as [`handlebars-extra`](https://github.com/helpers/handlebars-helpers).
 
@@ -42,6 +43,15 @@ Provides a UUID string from cryptographically-strong random values, compliant wi
 ```handlebars
 SessionId: {{$UUID}}
 <!-- results in: '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d' -->
+```
+
+#### {{moment}} (date helper)
+
+Allows [moment](http://momentjs.com) to be used as a helper. [helper-date](https://github.com/helpers/helper-date) is used behind the scenes for this helper.
+
+```handlebars
+{{moment "5 years ago" "YYYY"}}
+//=> 2015
 ```
 
 #### {{and}}
@@ -399,3 +409,4 @@ is less than or equal to `b`**.
 * `b` **{any}**
 * `options` **{Object}**: Handlebars provided options object
 * `returns` **{String}**: Block, or inverse block if specified and falsey.
+
