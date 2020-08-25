@@ -23,11 +23,10 @@
   "scripts": {
     "build": "rollup src/checkly-handlebars.js --file dist/checkly-handlebars.js --format umd --name \"ChecklyHandlebars\"",
     "pretest": "npm run build",
+    "test": "echo 'no public tests'",
     "prebuild": "rimraf dist",
     "commit": "git-cz",
-    "precommit": "lint-staged",
-    "travis-deploy-once": "travis-deploy-once",
-    "commitmsg": "commitlint -E HUSKY_GIT_PARAMS"
+    "travis-deploy-once": "travis-deploy-once"
   },
   "lint-staged": {
     "{src,test}/**/*.ts": [
@@ -79,5 +78,11 @@
     "handlebars-helpers": "^0.10.0",
     "lodash.random": "^3.2.0",
     "uuid": "^7.0.3"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
   }
 }
