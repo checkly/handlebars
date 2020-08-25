@@ -1,0 +1,15 @@
+version: 2
+updates:
+  # Keep npm dependencies up to date
+  - package-ecosystem: "npm"
+    directory: "/"
+    # Runs at 9am CET only on weekdays
+    schedule:
+      time: "09:00"
+      interval: "daily"
+      timezone: Europe/Berlin
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+    reviewers:
+      - "checkly/engineering"
