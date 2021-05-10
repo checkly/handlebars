@@ -78,10 +78,10 @@
     "rollup": "^1.29.0"
   },
   "dependencies": {
-    "handlebars": "^4.7.6",
+    "handlebars": "^4.7.7",
     "handlebars-helpers": "^0.10.0",
     "lodash.random": "^3.2.0",
-    "uuid": "^7.0.3"
+    "uuid": "^8.3.2"
   },
   "husky": {
     "hooks": {
