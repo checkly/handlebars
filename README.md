@@ -53,7 +53,7 @@ Splits a given string and return an element from the split array.
 
 * `string` **{String}**
 * `separator` **{String}**
-* `index` **{Number}**
+* `index` **{Number}**: defaults to -1
 * `returns` **{Array|String}**
 
 **Example**
