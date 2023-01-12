@@ -45,6 +45,29 @@ SessionId: {{$UUID}}
 <!-- results in: '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d' -->
 ```
 
+### {{split}}
+
+Splits a given string and return an element from the split array. 
+
+**Params**
+
+* `string` **{String}**
+* `separator` **{String}**
+* `index` **{Number}**: defaults to -1
+* `returns` **{Array|String}**
+
+**Example**
+
+```handlebars
+{{split "somekey:somevalue" ":" 1}}
+<!-- results in: 'somevalue' -->
+```
+
+```handlebars
+{{split "a long sentence" " " -1}}
+<!-- results in: ['a', 'long', 'sentence'] -->
+```
+
 #### {{moment}} (date helper)
 
 Allows [moment](http://momentjs.com) to be used as a helper. [helper-date](https://github.com/helpers/helper-date) is used behind the scenes for this helper.
